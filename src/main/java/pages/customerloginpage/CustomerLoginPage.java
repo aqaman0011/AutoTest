@@ -12,6 +12,10 @@ public class CustomerLoginPage extends BasePage {
     }
 
     private final By dropdownButtonYourName = By.xpath("//select[@id='userSelect']");
+    private final By yourNameIsHarryPotter = By.xpath("//option[@class='ng-binding ng-scope' and text()='Harry Potter']");
+    private final By loginButton = By.xpath("//button[@ng-show and text()='Login']");
+    private final By textWelcome = By.xpath("//strong[text()=' Welcome ']");
+    private final By textWelcomeHarryPotter = By.xpath("//span[text()='Harry Potter']");
 
     public CustomerLoginPage checkCountUsers () {
         waitElementIsVisible(driver.findElement(dropdownButtonYourName));
@@ -20,5 +24,21 @@ public class CustomerLoginPage extends BasePage {
         return this;
     }
 
-    //private final By loginByRoleHarryPotter = By.xpath("//select[@id='userSelect']");
+    public CustomerLoginPage chooseHarryPotterAndClickLogin (){
+        waitElementIsVisible(driver.findElement(dropdownButtonYourName));
+        driver.findElement(dropdownButtonYourName).click();
+        waitElementIsVisible(driver.findElement(yourNameIsHarryPotter));
+        driver.findElement(yourNameIsHarryPotter).click();
+        waitElementIsVisible(driver.findElement(loginButton));
+        driver.findElement(loginButton).click();
+        waitElementIsVisible(driver.findElement(textWelcome));
+        waitElementIsVisible(driver.findElement(textWelcomeHarryPotter));
+        Assert.assertTrue(driver.findElement(textWelcome).isDisplayed(),"Text 'Welcome' not found!");
+        Assert.assertTrue(driver.findElement(textWelcomeHarryPotter).isDisplayed(),"Text 'Welcome Harry Potter' not found!");
+        return this;
+    }
+
+
+
+
 }
