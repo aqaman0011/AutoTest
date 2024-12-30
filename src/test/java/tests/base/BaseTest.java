@@ -4,6 +4,7 @@ import common.CommonAction;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterSuite;
+import pages.bankmanagerlogin.BankManagerLoginPage;
 import pages.base.BasePage;
 import pages.customerloginpage.CustomerLoginPage;
 import pages.homeglobalsqa.HomeGlobalsqaPage;
@@ -15,6 +16,7 @@ public class BaseTest {
     protected BasePage basePage = new BasePage(driver);
     protected HomeGlobalsqaPage homeGlobalsqaPage = new HomeGlobalsqaPage(driver);
     protected CustomerLoginPage customerLoginPage = new CustomerLoginPage(driver);
+    protected BankManagerLoginPage bankManagerLoginPage = new BankManagerLoginPage(driver);
 
     @AfterSuite(alwaysRun = true)
     public void quite(){
