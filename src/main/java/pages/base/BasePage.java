@@ -9,6 +9,14 @@ import java.time.Duration;
 public class BasePage {
     protected WebDriver driver;
 
+    protected void pauseBetweenSteps() {
+        try {
+            Thread.sleep(2000); // Пауза в 2 секунд
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt(); // Восстановление статуса потока при прерывании
+        }
+    }
+
     public BasePage (WebDriver driver) {
         this.driver = driver;
     }
@@ -22,4 +30,6 @@ public class BasePage {
         return element;
 
     }
+
+
 }
