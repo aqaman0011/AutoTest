@@ -1,5 +1,6 @@
 package common;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
@@ -15,11 +16,15 @@ public class CommonAction {
     private CommonAction() {
     }
 
-    public static WebDriver createDriver() {
+/*    public static WebDriver createDriver() {
         if (driver == null) {
             switch (PLATFORM_AND_BROWSER){
                 case "win_Chrome":
                     System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+                    driver = new ChromeDriver();
+                    break;
+                case "mac_Chrome":
+                    System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
                     driver = new ChromeDriver();
                     break;
                 default:
@@ -28,6 +33,23 @@ public class CommonAction {
             driver.manage().window().maximize();
             driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT, TimeUnit.SECONDS);
         }
-        return driver;
-    }
+        }
+        return driver;*/
+
+        public static WebDriver createDriver() {
+            if (driver == null) {
+                switch (PLATFORM_AND_BROWSER) {
+                    case "win_Chrome":
+                    case "mac_Chrome":
+                        WebDriverManager.chromedriver().setup();
+                        driver = new ChromeDriver();
+                        break;
+                    default:
+                        Assert.fail("Incorrect platform or browser name: " + PLATFORM_AND_BROWSER);
+                }
+                driver.manage().window().maximize();
+                driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT, TimeUnit.SECONDS);
+            }
+            return driver;
+        }
 }

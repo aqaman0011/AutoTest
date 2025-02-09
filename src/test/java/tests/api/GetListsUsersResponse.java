@@ -21,7 +21,8 @@ public class GetListsUsersResponse {
         GetListUsersResponse response = RestAssured
                 .given()
                 .when()
-                    .get("/users?page=2")
+                .queryParam("page", 2)
+                    .get("/users")
                 .then()
                     .statusCode(200)
                 .extract().response().as(GetListUsersResponse.class);

@@ -22,7 +22,8 @@ public class PutUpdateUserDate {
                 .given()
                 .when()
                     .body(orderReq)
-                    .put("/users/2")
+                .pathParam("userId", "2")
+                    .put("/users/{userId}")
                 .then()
                     .statusCode(200)
                 .extract().response().as(PutUpdateUserDateResponse.class);

@@ -3,7 +3,12 @@
 <suite name="All Test Suite">
     <test verbose="2" preserve-order="true" name="AutoTest">
                 <classes>
-                    <class name="tests.customerlogin.TestSout"></class>
+                    <class name="tests.api.GetDelayedResponseWithHamcrestChecking"></class>
+                    <class name="tests.api.GetListsUsersResponse"></class>
+                    <class name="tests.api.GetSingleResourceWithHamcrestChecking"></class>
+                    <class name="tests.api.GetSpecificUser"></class>
+                    <class name="tests.api.PostCreateNewUser"></class>
+                    <class name="tests.api.PutUpdateUserDate"></class>
                 </classes>
     </test>
 </suite>

@@ -2,7 +2,6 @@ package tests.api;
 
 import api.Specs;
 import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
 import org.testng.annotations.Test;
 
 public class GetSpecificUser {
@@ -15,7 +14,8 @@ public class GetSpecificUser {
         RestAssured
                 .given()
                 .when()
-                    .get("/users/2")
+                .pathParam("userId", "2")
+                    .get("/users/{userId}")
                 .then()
                     .statusCode(200);
 

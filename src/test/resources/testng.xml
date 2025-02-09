@@ -4,6 +4,9 @@
     <test verbose="2" preserve-order="true" name="AutoTest">
                 <classes>
                     <class name="tests.customerlogin.FindCustomerLoginPageWithMainPageTest"></class>
+                    <class name="tests.customerlogin.TestSout"></class>
+                    <class name="tests.customerlogin.ChooseCustomerHarryPotterAndLogin"></class>
+                    <class name="tests.customerlogin.BankManagerLoginAddCustomerAndCheckIt"></class>
                 </classes>
     </test>
 </suite>
