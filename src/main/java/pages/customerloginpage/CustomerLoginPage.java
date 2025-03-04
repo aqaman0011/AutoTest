@@ -24,19 +24,52 @@ public class CustomerLoginPage extends BasePage {
         return this;
     }
 
-    public CustomerLoginPage chooseHarryPotterAndClickLogin (){
+    public CustomerLoginPage clickDropdownButtonYourName () {
         waitElementIsVisible(driver.findElement(dropdownButtonYourName));
         driver.findElement(dropdownButtonYourName).click();
+        return this;
+    }
+
+    public CustomerLoginPage findNameIsHarryPotter () {
         waitElementIsVisible(driver.findElement(yourNameIsHarryPotter));
         driver.findElement(yourNameIsHarryPotter).click();
+        return this;
+    }
+
+    public CustomerLoginPage findAndClickLoginButton () {
         waitElementIsVisible(driver.findElement(loginButton));
         driver.findElement(loginButton).click();
+        return this;
+    }
+
+    public CustomerLoginPage checkTextWelcome () {
         waitElementIsVisible(driver.findElement(textWelcome));
-        waitElementIsVisible(driver.findElement(textWelcomeHarryPotter));
         Assert.assertTrue(driver.findElement(textWelcome).isDisplayed(),"Text 'Welcome' not found!");
+        return this;
+    }
+
+    public CustomerLoginPage checkTextWelcomeHarryPotter () {
+        waitElementIsVisible(driver.findElement(textWelcomeHarryPotter));
         Assert.assertTrue(driver.findElement(textWelcomeHarryPotter).isDisplayed(),"Text 'Welcome Harry Potter' not found!");
         return this;
     }
+
+
+
+// Старый код
+//    public CustomerLoginPage chooseHarryPotterAndClickLogin (){
+//        waitElementIsVisible(driver.findElement(dropdownButtonYourName));
+//        driver.findElement(dropdownButtonYourName).click();
+//        waitElementIsVisible(driver.findElement(yourNameIsHarryPotter));
+//        driver.findElement(yourNameIsHarryPotter).click();
+//        waitElementIsVisible(driver.findElement(loginButton));
+//        driver.findElement(loginButton).click();
+//        waitElementIsVisible(driver.findElement(textWelcome));
+//        waitElementIsVisible(driver.findElement(textWelcomeHarryPotter));
+//        Assert.assertTrue(driver.findElement(textWelcome).isDisplayed(),"Text 'Welcome' not found!");
+//        Assert.assertTrue(driver.findElement(textWelcomeHarryPotter).isDisplayed(),"Text 'Welcome Harry Potter' not found!");
+//        return this;
+//    }
 
 
 

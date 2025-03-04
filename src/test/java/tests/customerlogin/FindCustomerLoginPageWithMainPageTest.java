@@ -9,7 +9,7 @@ public class FindCustomerLoginPageWithMainPageTest extends BaseTest {
     public void checkIsRedirectToCustomerLoginPage (){
         basePage.open("https://www.globalsqa.com/angularJs-protractor/BankingProject/#/login");
         homeGlobalsqaPage
-                .enterCustomerLoginButton();
+                .clickEnterCustomerLoginButton();
         customerLoginPage
                 .checkCountUsers();
 

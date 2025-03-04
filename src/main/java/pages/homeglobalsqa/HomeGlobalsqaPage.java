@@ -11,7 +11,7 @@ public class HomeGlobalsqaPage extends BasePage {
 
     By customerLoginButton = By.xpath("//button[@ng-click='customer()']");
 
-    public HomeGlobalsqaPage enterCustomerLoginButton(){
+    public HomeGlobalsqaPage clickEnterCustomerLoginButton(){
         driver.findElement(customerLoginButton).click();
         return this;
     }

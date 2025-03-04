@@ -7,7 +7,13 @@ public class ChooseCustomerHarryPotterAndLogin extends BaseTest {
     public void findIsHarryPotterAndLogin (){
         basePage.open("https://www.globalsqa.com/angularJs-protractor/BankingProject/#/customer");
         customerLoginPage
-                .chooseHarryPotterAndClickLogin();
+                .checkCountUsers()
+                .clickDropdownButtonYourName()
+                .findNameIsHarryPotter()
+                .findAndClickLoginButton()
+                .checkTextWelcome()
+                .checkTextWelcomeHarryPotter();
+
 
     }
 }
