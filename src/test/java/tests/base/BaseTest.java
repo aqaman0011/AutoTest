@@ -8,6 +8,7 @@ import pages.bankmanagerlogin.BankManagerLoginPage;
 import pages.base.BasePage;
 import pages.customerloginpage.CustomerLoginPage;
 import pages.homeglobalsqa.HomeGlobalsqaPage;
+import pages.transactionuserpage.TransactionUserPage;
 
 import java.util.Set;
 
@@ -17,6 +18,7 @@ public class BaseTest {
     protected HomeGlobalsqaPage homeGlobalsqaPage = new HomeGlobalsqaPage(driver);
     protected CustomerLoginPage customerLoginPage = new CustomerLoginPage(driver);
     protected BankManagerLoginPage bankManagerLoginPage = new BankManagerLoginPage(driver);
+    protected TransactionUserPage transactionUserPage = new TransactionUserPage(driver);
 
     @AfterSuite(alwaysRun = true)
     public void quite(){
