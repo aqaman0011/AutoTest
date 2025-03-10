@@ -11,7 +11,7 @@ public class BasePage {
 
     protected void pauseBetweenSteps() {
         try {
-            Thread.sleep(2000); // Пауза в 2 секунд
+            Thread.sleep(5000); // Пауза в 2 секунд
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt(); // Восстановление статуса потока при прерывании
         }
