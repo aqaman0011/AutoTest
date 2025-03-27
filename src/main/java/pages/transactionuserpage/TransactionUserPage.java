@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import pages.base.BasePage;
 
@@ -21,6 +22,7 @@ public class TransactionUserPage extends BasePage {
     private final By transactionListButton =  By.xpath("//button[@ng-class='btnClass1']");
     private final By calendarStartWindow = By.xpath("//input[@id='start']");
     private final By calendarEndWindow = By.xpath("//input[@id='end']");
+    private final By userWelcomeName = By.xpath("//span[@class='fontBig ng-binding']");
 
 
     public TransactionUserPage(WebDriver driver) {
@@ -45,11 +47,13 @@ public class TransactionUserPage extends BasePage {
         return this;
     }
 
+
     public TransactionUserPage checkPageTextWelcome () {
         waitElementIsVisible(driver.findElement(textWelcome));
         Assert.assertTrue(driver.findElement(textWelcome).isDisplayed(),"Text 'Welcome' not found!");
         return this;
     }
+
 
     public TransactionUserPage checkTextWelcomeHermoineGranger() {
         waitElementIsVisible(driver.findElement(textWelcomeHermoineGranger));
@@ -69,13 +73,6 @@ public class TransactionUserPage extends BasePage {
         return this;
     }
 
-    public TransactionUserPage clickСalendarEndWindow () {
-        waitElementIsVisible(driver.findElement(calendarEndWindow));
-        driver.findElement(calendarEndWindow).click();
-        return this;
-    }
-
-
     // Метод для выбора даты через JavaScript ввод стартовой даты
     public static void setDateInStartCalendar(WebDriver driver, String dateTime) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -94,7 +91,7 @@ public class TransactionUserPage extends BasePage {
     public static void setDateInEndCalendar (WebDriver driver, String dateTime) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("document.getElementById('end').value = arguments[0];", dateTime);
-      //js.executeScript("document.getElementById('end').dispatchEvent(new Event('change'));");
+        //js.executeScript("document.getElementById('end').dispatchEvent(new Event('change'));");
         js.executeScript("document.getElementById('end').dispatchEvent(new Event('input'));");
         js.executeScript("document.getElementById('end').dispatchEvent(new Event('blur'));");
         String actualDate = (String) js.executeScript("return document.getElementById('end').value;");
@@ -175,4 +172,38 @@ public class TransactionUserPage extends BasePage {
 
         Assert.assertEquals(actualTypes, expectedTypes, "Transaction Type column values do not match!");
     }
+
+    // Получаю всех пользователей из списка
+    public List<WebElement> getUsersList() {
+        return driver.findElements(By.xpath("//select[@id='userSelect']/option"));
+    }
+
+    // Выбираю пользователя по индексу
+//    public TransactionUserPage selectUserByIndex(int index) {
+//        List<WebElement> users = getUsersList();
+//        if (index < 1 || index >= users.size()) {
+//            throw new IllegalArgumentException("Неверный индекс пользователя: " + index);
+//        }
+//        WebElement user = users.get(index);
+//        user.click();
+//        return this;
+//    }
+
+    public TransactionUserPage selectUserByIndex(int index) {
+        WebElement dropdown = driver.findElement(dropdownButtonYourName);
+        Select select = new Select(dropdown);
+        select.selectByIndex(index);
+        return this;
+    }
+
+    // Проверяю имя пользователя после логина
+    public TransactionUserPage checkTextWelcomeUser(String expectedName) {
+        //имя пользователя которое появилось
+        waitElementIsVisible(driver.findElement(userWelcomeName));
+        //актуальное имя
+        String actualUserName = driver.findElement(userWelcomeName).getText();
+        Assert.assertEquals(actualUserName, expectedName, "Имя пользователя неверное!");
+        return this;
+    }
+
 }
